@@ -61,6 +61,9 @@ namespace Ru1t3rl
             }
         }
 
+        /// <summary>
+        /// Adds the next number in the fibonacci sequence to the screen 
+        /// </summary>
         public void AddNextNumber()
         {
             currentNumber = Algorithms.Fibonacci(currentIndex);

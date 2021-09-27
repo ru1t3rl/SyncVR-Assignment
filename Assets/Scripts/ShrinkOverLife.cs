@@ -18,6 +18,7 @@ public class ShrinkOverLife : MonoBehaviour
         }
         else if (transform.localScale.sqrMagnitude > 0.01f)
         {
+            // Time.time - startTime will return the ellapsed time
             shrinkRate = 1 - ((Time.time - startTime) / lifeTime);
             transform.localScale = new Vector3(shrinkRate, shrinkRate, shrinkRate);
         }
