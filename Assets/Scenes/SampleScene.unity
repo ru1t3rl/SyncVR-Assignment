@@ -1168,7 +1168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationTime: 1.25
   timeVisible: 7.5
-  coolDownTime: 10
+  coolDownTime: 0
 --- !u!114 &916503599
 MonoBehaviour:
   m_ObjectHideFlags: 0
