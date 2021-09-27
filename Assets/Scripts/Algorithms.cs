@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Ru1t3rl
+﻿namespace Ru1t3rl
 {
     public static class Algorithms
     {
