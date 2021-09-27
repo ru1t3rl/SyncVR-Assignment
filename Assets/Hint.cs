@@ -12,9 +12,11 @@ public class Hint : MonoBehaviour
     public void Show()
     {
         if (!active)
+        {
             transform.DOScaleY(1, animationTime)
                 .OnStart(() => active = true)
                 .OnComplete(() => StartCoroutine(HintVisible()));
+        }
     }
 
     IEnumerator HintVisible()

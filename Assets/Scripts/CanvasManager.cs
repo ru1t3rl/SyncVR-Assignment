@@ -23,7 +23,7 @@ namespace Ru1t3rl
         [SerializeField] UnityEvent OnInCorrect;
 
         int currentIndex = 0;
-        int currentNumber = 0;
+        ulong currentNumber = 0;
 
         void Awake()
         {
@@ -42,13 +42,15 @@ namespace Ru1t3rl
             }
         }
 
-        // Add the next number with an extra check. This could be used for quizes
+        /// <summary>
+        /// Add the next number with an extra check. This could be used for quizes
+        /// </summary> 
         public void AddNextNumberWithCheck()
         {
-            int answer = 0;
-            System.Int32.TryParse(inputField.text, out answer);
+            ulong answer = 0;
+            ulong.TryParse(inputField.text, out answer);
 
-            if (answer == System.Convert.ToInt32(Algorithms.Fibonacci(currentIndex)))
+            if (answer == Algorithms.Fibonacci(currentIndex))
             {
                 AddNextNumber(answer);
                 OnCorrect?.Invoke();
@@ -59,14 +61,28 @@ namespace Ru1t3rl
             }
         }
 
+        public void AddNextNumber()
+        {
+            currentNumber = Algorithms.Fibonacci(currentIndex);
+
+            // Check if there are still objects in the pool or if the active objects has reached a max
+            if (textObjects.Count == 0 || visibleNumbers.Count == maxVisibleNumbers)
+            {
+                visibleNumbers.Peek().gameObject.SetActive(false);
+                textObjects.Push(visibleNumbers.Dequeue());
+            }
+
+            SetTextObject(textObjects.Pop());
+            currentIndex++;
+        }
+
         /// <summary>
-        /// Adds the next number in the fibonacci sequence to the screen
-        /// 
+        /// Adds the next number in the fibonacci sequence to the screen 
         /// </summary>
         /// <param name="nextNum"></param>
-        public void AddNextNumber(int nextNum = -1)
+        public void AddNextNumber(ulong nextNum)
         {
-            currentNumber = nextNum == -1 ? System.Convert.ToInt32(Algorithms.Fibonacci(currentIndex)) : nextNum;
+            currentNumber = nextNum;
 
             // Check if there are still objects in the pool or if the active objects has reached a max
             if (textObjects.Count == 0 || visibleNumbers.Count == maxVisibleNumbers)
