@@ -68,8 +68,6 @@ namespace Ru1t3rl
         {
             currentNumber = nextNum == -1 ? System.Convert.ToInt32(Algorithms.Fibonacci(currentIndex)) : nextNum;
 
-            Debug.Log("Current Number: " + currentNumber);
-
             // Check if there are still objects in the pool or if the active objects has reached a max
             if (textObjects.Count == 0 || visibleNumbers.Count == maxVisibleNumbers)
             {
