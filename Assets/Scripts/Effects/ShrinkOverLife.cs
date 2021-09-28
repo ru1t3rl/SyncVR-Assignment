@@ -14,6 +14,7 @@ namespace Ru1t3rl.Effects
             {
                 startTime = Time.time;
                 shrinking = true;
+                transform.localScale = Vector3.one;
             }
             else if (transform.localScale.sqrMagnitude > 0.01f)
             {
