@@ -1255,8 +1255,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationTime: 1.25
-  timeVisible: 5
-  coolDownTime: 10
+  timeVisible: 1
+  coolDownTime: 1
   coolDownImage: {fileID: 2098106743}
   OnUseHint:
     m_PersistentCalls:

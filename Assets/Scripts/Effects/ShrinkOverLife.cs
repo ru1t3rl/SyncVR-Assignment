@@ -8,6 +8,10 @@ namespace Ru1t3rl.Effects
         float startTime, shrinkRate;
         bool shrinking = false;
 
+        void OnDisable() {
+            shrinking = false;
+        }
+
         void LateUpdate()
         {
             if (!shrinking)
