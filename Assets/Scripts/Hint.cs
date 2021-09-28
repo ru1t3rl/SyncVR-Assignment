@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Ru1t3rl
 {
     public class Hint : MonoBehaviour
     {
         [SerializeField] float animationTime, timeVisible, coolDownTime;
+        [SerializeField] Image coolDownImage;
+        public UnityEvent OnUseHint;
 
         bool active = false;
 
@@ -14,9 +18,13 @@ namespace Ru1t3rl
         {
             if (!active)
             {
+                coolDownImage.fillAmount = 1;
+
                 transform.DOScaleY(1, animationTime)
                     .OnStart(() => active = true)
                     .OnComplete(() => StartCoroutine(HintVisible()));
+
+                OnUseHint?.Invoke();
             }
         }
 
@@ -28,6 +36,7 @@ namespace Ru1t3rl
 
         IEnumerator CoolDown()
         {
+            DOTween.To(() => coolDownImage.fillAmount, x => coolDownImage.fillAmount = x, 0, coolDownTime);
             yield return new WaitForSeconds(coolDownTime);
             active = false;
         }
